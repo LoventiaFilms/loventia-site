@@ -41,6 +41,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
+        /* Réinitialisation de base et styles généraux */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 62.5%; /* 1rem = 10px */
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: #333333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 120rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Styles pour l'accessibilité */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -231,7 +259,265 @@
             color: #B76E79;
         }
         
+        /* Styles pour les sections avec images de fond */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 60rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #FFFFFF;
+            margin-top: 0;
+            padding-top: 12rem;
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.loventia.fr/asset/05.webp');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 80rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            color: #333333;
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            color: #333333;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            max-width: 70rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .text-white {
+            color: #FFFFFF;
+        }
+        
+        .text-shadow {
+            text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.8rem;
+            background-color: #B76E79;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            border: 0.2rem solid #B76E79;
+            box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #A05C67;
+            border-color: #A05C67;
+            transform: translateY(-0.2rem);
+            box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #B76E79;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #B76E79;
+            color: #FFFFFF;
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        /* Animation de fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(2rem);
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Styles de section */
+        .section-spacer {
+            padding: 10rem 0;
+        }
+        
+        .section-inner {
+            padding: 2rem 0;
+        }
+        
+        .bg-light {
+            background-color: #F9F9F9;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Styles pour les cartes et les colonnes */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -1.5rem;
+        }
+        
+        .col {
+            flex: 1;
+            padding: 0 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Section avec image de fond */
+        .bg-image-section {
+            position: relative;
+            padding: 10rem 0;
+            overflow: hidden;
+        }
+        
+        .bg-image-section:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        #offre:before {
+            background-image: url('https://www.loventia.fr/asset/hero.webp');
+        }
+        
+        #slogan-1 {
+            padding: 0;
+            height: 80vh;
+            min-height: 50rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #slogan-1:before {
+            background-image: url('https://www.loventia.fr/asset/03.webp');
+            background-position: center 40%;
+        }
+        
+        #final-cta {
+            padding: 0;
+            height: 80vh;
+            min-height: 50rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #final-cta:before {
+            background-image: url('https://www.loventia.fr/asset/12.webp');
+            background-position: center center;
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+        
+        /* Styles pour le footer */
+        .footer {
+            background-color: #FFFFFF;
+            padding: 5rem 0 3rem;
+        }
+        
+        /* Animation pour les sections lors du scroll */
+        .in-view {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(3rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Styles pour les appareils mobiles */
         @media (max-width: 992px) {
+            html {
+                font-size: 60%;
+            }
+            
             .desktop-nav {
                 display: none;
             }
@@ -246,6 +532,58 @@
             
             .header-fixed.scrolled {
                 height: 8rem;
+            }
+            
+            .row {
+                flex-direction: column;
+            }
+            
+            .col {
+                flex: 1 1 100%;
+                margin-bottom: 3rem;
+            }
+            
+            h1 {
+                font-size: 3.6rem;
+            }
+            
+            h2 {
+                font-size: 3.2rem;
+            }
+            
+            /* Ajustements pour la section "L'OFFRE LOVENTIA" sur mobile */
+            #offre .card {
+                margin: 0 auto !important;
+                max-width: 100% !important;
+            }
+        }
+        
+        /* Corrections spécifiques pour iOS et iPad */
+        @supports (-webkit-touch-callout: none) {
+            /* Styles spécifiques pour iOS et Safari */
+            .hero:before,
+            .bg-image-section:before {
+                background-attachment: scroll !important;
+                transform: translateZ(0); /* Force hardware acceleration */
+                -webkit-backface-visibility: hidden; /* Améliore le rendu */
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            
+            /* Fixes spécifiques pour certaines sections */
+            #hero:before {
+                background-position: center 30%;
+            }
+            
+            #offre:before {
+                background-position: center center;
+            }
+            
+            #slogan-1:before {
+                background-position: center 40%;
+            }
+            
+            #final-cta:before {
+                background-position: center center;
             }
         }
     </style>
@@ -298,7 +636,7 @@
     <!-- Le contenu principal -->
     <main>
         <!-- Section Hero avec image de fond plein écran -->
-        <section id="hero" class="hero" style="background-image: url('https://www.loventia.fr/asset/05.webp'); background-position: center 30%;">
+        <section id="hero" class="hero">
             <div class="hero-content fade-in">
                 <h1 class="text-white text-shadow">L'émotion d'un film, l'élégance d'un regard.</h1>
                 <p class="subtitle text-white text-shadow">Quand les souvenirs prennent vie pour toujours</p>
@@ -360,7 +698,7 @@
         </section>
         
         <!-- Section "L'OFFRE LOVENTIA" avec image de fond -->
-        <section id="offre" class="bg-image-section" style="background-image: url('https://www.loventia.fr/asset/hero.webp'); background-position: center center;">
+        <section id="offre" class="bg-image-section">
             <div class="container">
                 <div class="section-inner">
                     <div class="card" style="max-width: 60rem; margin-left: auto; margin-right: 4rem; background-color: rgba(255, 255, 255, 0.95);">
@@ -393,8 +731,8 @@
                         </ul>
                         
                         <div class="text-center">
-                          <a href="#date" class="btn btn-secondary">Vérifiez notre disponibilité</a>
-                      </div>
+                            <a href="#date" class="btn btn-secondary">Vérifiez notre disponibilité</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -404,7 +742,7 @@
         <div class="section-spacer" style="background-color: #FFFFFF; padding: 5rem 0;"></div>
 
         <!-- Section d'espacement visuel avec citation -->
-        <section id="slogan-1" class="bg-image-section" style="background-image: url('https://www.loventia.fr/asset/03.webp'); background-position: center 40%; background-attachment: scroll; height: 80vh; display: flex; align-items: center; justify-content: center;">
+        <section id="slogan-1" class="bg-image-section">
             <div class="container">
                 <div class="section-inner">
                     <div class="text-center">
