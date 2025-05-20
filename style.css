@@ -618,6 +618,14 @@ footer {
   }
 }
 
+.logo {
+  height: 50px !important;
+}
+
+.header-container {
+  padding: 1rem 2rem;
+}
+
 @media (max-width: 576px) {
   html {
     font-size: 52%;
@@ -638,4 +646,13 @@ footer {
   .gallery {
     grid-template-columns: 1fr;
   }
+}
+
+.logo {
+  height: 42px !important;
+}
+
+.header-container {
+  padding: 0.6rem 1.2rem;
+  height: auto;
 }
