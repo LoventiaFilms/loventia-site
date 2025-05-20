@@ -36,9 +36,6 @@
     <!-- Préconnexions pour améliorer les performances -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Scripts JS -->
-    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- Header fixe avec navigation -->
@@ -84,11 +81,138 @@
         </div>
     </header>
 
-    <!-- Le contenu principal sera ajouté étape par étape -->
+    <!-- Le contenu principal -->
     <main>
-        <!-- Les sections seront ajoutées une par une -->
+        <!-- Section Hero avec image de fond plein écran -->
+        <section id="hero" class="hero" style="background-image: url('https://www.loventia.fr/asset/05.webp');">
+            <div class="hero-content fade-in">
+                <h1 class="text-white text-shadow">L'émotion d'un film, l'élégance d'un regard.</h1>
+                <p class="subtitle text-white text-shadow">Quand les souvenirs prennent vie pour toujours</p>
+                <div class="btn-group">
+                    <a href="#contact" class="btn fade-in delay-300">Réservez votre moment</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Les autres sections seront ajoutées par la suite -->
     </main>
 
     <!-- Le footer sera ajouté ultérieurement -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments du DOM
+            const header = document.getElementById('main-header');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+            
+            // 1. Gestion du header au scroll
+            function handleHeaderScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            // Initialiser l'état du header au chargement
+            handleHeaderScroll();
+            
+            // Écouter l'événement de scroll
+            window.addEventListener('scroll', handleHeaderScroll);
+            
+            // 2. Gestion du menu mobile
+            function toggleMobileMenu() {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                
+                menuToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                
+                // Bloquer le défilement du body quand le menu est ouvert
+                document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
+                
+                // Animer les liens avec un délai
+                if (!isExpanded) {
+                    mobileNavLinks.forEach((link, index) => {
+                        setTimeout(() => {
+                            link.style.opacity = '1';
+                            link.style.transform = 'translateY(0)';
+                        }, 100 + (index * 50));
+                    });
+                }
+            }
+            
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // 3. Fermer le menu mobile lors du clic sur un lien et Smooth Scroll
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                    
+                    // Récupérer l'ID de la section cible
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Smooth scroll vers la section
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetSection.offsetTop - header.offsetHeight,
+                                behavior: 'smooth'
+                            });
+                        }, 300); // Délai pour permettre la fermeture du menu
+                    }
+                });
+            });
+            
+            // 4. Smooth scroll pour tous les liens d'ancrage
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Ne pas exécuter si c'est un lien mobile (déjà géré)
+                    if (this.classList.contains('mobile-nav-link')) return;
+                    
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - header.offsetHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 5. Gestion des animations d'entrée
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -10% 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les sections principales
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
