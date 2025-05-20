@@ -39,6 +39,209 @@
     
     <!-- Polices Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Styles pour le header amélioré */
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #FFFFFF;
+            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.05);
+            height: 12rem;
+            padding: 0;
+            transition: height 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .header-fixed.scrolled {
+            height: 9rem;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.08);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: 120rem;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        .logo-link {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            box-sizing: border-box;
+        }
+        
+        .logo {
+            height: auto;
+            max-height: 100%;
+            width: auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 3.5rem;
+        }
+        
+        .main-nav {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .nav-link {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -0.3rem;
+            left: 0;
+            width: 0;
+            height: 0.2rem;
+            background-color: #B76E79;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 1rem;
+        }
+        
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 2.4rem;
+            width: 3rem;
+            position: relative;
+        }
+        
+        .hamburger-bar {
+            display: block;
+            width: 100%;
+            height: 0.2rem;
+            background-color: #333333;
+            border-radius: 0.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active .hamburger-bar:nth-child(1) {
+            transform: translateY(1.1rem) rotate(45deg);
+        }
+        
+        .menu-toggle.active .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active .hamburger-bar:nth-child(3) {
+            transform: translateY(-1.1rem) rotate(-45deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #F4E1D2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding-top: 8rem;
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-nav {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            color: #333333;
+            font-size: 2.4rem;
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(1rem);
+        }
+        
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            color: #B76E79;
+        }
+        
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .header-fixed {
+                height: 10rem;
+            }
+            
+            .header-fixed.scrolled {
+                height: 8rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header fixe avec navigation -->
@@ -46,7 +249,7 @@
         <div class="container header-container">
             <!-- Logo -->
             <a href="#hero" class="logo-link" aria-label="Loventia - Retour à l'accueil">
-                <img src="https://www.loventia.fr/asset/1-BASE.webp" alt="Loventia - Films et photos de mariage" class="logo" width="auto" height="90">
+                <img src="https://www.loventia.fr/asset/1-TITLE.png" alt="Loventia - Films et photos de mariage" class="logo">
             </a>
             
             <!-- Navigation desktop -->
@@ -266,192 +469,5 @@
             }
         });
     </script>
-    
-    <!-- Ajout d'une classe sr-only pour l'accessibilité -->
-    <style>
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Styles pour le header amélioré */
-        .header-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.2rem 0;
-            transition: all 0.4s ease;
-            background-color: #FFFFFF;
-            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.05);
-        }
-        
-        .header-fixed.scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.08);
-        }
-        
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .logo {
-            height: 9rem;
-            width: auto;
-            transition: all 0.3s ease;
-        }
-        
-        .header-fixed.scrolled .logo {
-            height: 7rem;
-        }
-        
-        .nav-list {
-            display: flex;
-            list-style: none;
-            gap: 3.5rem;
-        }
-        
-        .nav-link {
-            color: #333333;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-            font-size: 1.5rem;
-            letter-spacing: 0.05em;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -0.3rem;
-            left: 0;
-            width: 0;
-            height: 0.2rem;
-            background-color: #B76E79;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 1rem;
-        }
-        
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 2.4rem;
-            width: 3rem;
-            position: relative;
-        }
-        
-        .hamburger-bar {
-            display: block;
-            width: 100%;
-            height: 0.2rem;
-            background-color: #333333;
-            border-radius: 0.1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .menu-toggle.active .hamburger-bar:nth-child(1) {
-            transform: translateY(1.1rem) rotate(45deg);
-        }
-        
-        .menu-toggle.active .hamburger-bar:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active .hamburger-bar:nth-child(3) {
-            transform: translateY(-1.1rem) rotate(-45deg);
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #F4E1D2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            padding-top: 8rem;
-        }
-        
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-nav {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .mobile-nav-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            color: #333333;
-            font-size: 2.4rem;
-            font-family: 'Playfair Display', serif;
-            text-decoration: none;
-            padding: 1.5rem 0;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(1rem);
-        }
-        
-        .mobile-nav-link:hover,
-        .mobile-nav-link.active {
-            color: #B76E79;
-        }
-        
-        @media (max-width: 992px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .logo {
-                height: 7rem;
-            }
-            
-            .header-fixed.scrolled .logo {
-                height: 6rem;
-            }
-        }
-    </style>
 </body>
 </html>
