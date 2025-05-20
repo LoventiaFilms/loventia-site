@@ -143,6 +143,7 @@
             border: none;
             cursor: pointer;
             padding: 1rem;
+            z-index: 1001; /* S'assurer que le bouton reste au-dessus du menu mobile */
         }
         
         .hamburger-icon {
@@ -163,6 +164,7 @@
             transition: all 0.3s ease;
         }
         
+        /* Fix pour la transformation en croix */
         .menu-toggle.active .hamburger-bar:nth-child(1) {
             transform: translateY(1.1rem) rotate(45deg);
         }
@@ -334,6 +336,7 @@
             function toggleMobileMenu() {
                 const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
                 
+                // Assurez-vous que la classe active est correctement basculée sur le bouton
                 menuToggle.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
                 menuToggle.setAttribute('aria-expanded', !isExpanded);
@@ -387,22 +390,21 @@
             
             // 4. Smooth scroll pour tous les liens d'ancrage
             allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Ne pas exécuter si c'est un lien mobile (déjà géré)
-                    if (this.classList.contains('mobile-nav-link')) return;
-                    
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - header.offsetHeight,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                if (!link.classList.contains('mobile-nav-link')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if (targetSection) {
+                            window.scrollTo({
+                                top: targetSection.offsetTop - header.offsetHeight,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                }
             });
             
             // 5. Navigation active au scroll
