@@ -41,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* Réinitialisation de base et styles généraux */
+        /* ========== RESET SIMPLE ET PROPRE ========== */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -49,7 +49,7 @@
         }
         
         html {
-            font-size: 62.5%; /* 1rem = 10px */
+            font-size: 62.5%;
             scroll-behavior: smooth;
         }
         
@@ -68,20 +68,7 @@
             padding: 0 2rem;
         }
         
-        /* Styles pour l'accessibilité */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Styles pour le header amélioré */
+        /* ========== HEADER SIMPLE ET STABLE ========== */
         .header-fixed {
             position: fixed;
             top: 0;
@@ -89,15 +76,14 @@
             width: 100%;
             z-index: 1000;
             background-color: #FFFFFF;
-            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.05);
-            height: 12rem;
-            padding: 0;
-            transition: height 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 10rem;
+            transition: all 0.3s ease;
         }
         
         .header-fixed.scrolled {
-            height: 9rem;
-            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.08);
+            height: 8rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
         }
         
         .header-container {
@@ -115,7 +101,6 @@
             display: flex;
             align-items: center;
             padding: 1rem 0;
-            box-sizing: border-box;
         }
         
         .logo {
@@ -123,13 +108,17 @@
             max-height: 100%;
             width: auto;
             display: block;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .nav-list {
             display: flex;
             list-style: none;
-            gap: 3.5rem;
+            gap: 3rem;
         }
         
         .main-nav {
@@ -143,8 +132,8 @@
             text-decoration: none;
             font-weight: 500;
             position: relative;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
             font-size: 1.5rem;
             letter-spacing: 0.05em;
         }
@@ -153,30 +142,31 @@
             content: '';
             position: absolute;
             bottom: -0.3rem;
-            left: 0;
+            left: 50%;
             width: 0;
-            height: 0.2rem;
+            height: 2px;
             background-color: #B76E79;
             transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
         
         .nav-link:hover::after,
         .nav-link.active::after {
-            width: 100%;
+            width: 80%;
         }
         
-        /* Ajustement pour le libellé plus long */
-        .nav-link.long-text {
-            font-size: 1.4rem;
+        .nav-link:hover {
+            color: #B76E79;
         }
         
+        /* Menu mobile simple */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 1rem;
-            z-index: 1001; /* S'assurer que le bouton reste au-dessus du menu mobile */
+            z-index: 1001;
         }
         
         .hamburger-icon {
@@ -185,7 +175,6 @@
             justify-content: space-between;
             height: 2.4rem;
             width: 3rem;
-            position: relative;
         }
         
         .hamburger-bar {
@@ -197,7 +186,6 @@
             transition: all 0.3s ease;
         }
         
-        /* Fix pour la transformation en croix */
         .menu-toggle.active .hamburger-bar:nth-child(1) {
             transform: translateY(1.1rem) rotate(45deg);
         }
@@ -224,7 +212,6 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s ease;
-            padding-top: 8rem;
         }
         
         .mobile-menu.active {
@@ -249,9 +236,7 @@
             font-family: 'Playfair Display', serif;
             text-decoration: none;
             padding: 1.5rem 0;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(1rem);
+            transition: color 0.3s ease;
         }
         
         .mobile-nav-link:hover,
@@ -259,7 +244,7 @@
             color: #B76E79;
         }
         
-        /* Styles pour les sections avec images de fond */
+        /* ========== HERO SECTION STABLE ========== */
         .hero {
             position: relative;
             height: 100vh;
@@ -271,7 +256,7 @@
             overflow: hidden;
             color: #FFFFFF;
             margin-top: 0;
-            padding-top: 12rem;
+            padding-top: 10rem;
         }
         
         .hero:before {
@@ -335,6 +320,7 @@
             text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
         }
         
+        /* ========== BOUTONS SIMPLES ========== */
         .btn {
             display: inline-block;
             padding: 1.2rem 2.8rem;
@@ -374,25 +360,7 @@
             justify-content: center;
         }
         
-        /* Animation de fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(2rem);
-            animation: fadeIn 1s ease forwards;
-        }
-        
-        .delay-300 {
-            animation-delay: 0.3s;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Styles de section */
+        /* ========== SECTIONS ET LAYOUT ========== */
         .section-spacer {
             padding: 10rem 0;
         }
@@ -409,7 +377,6 @@
             text-align: center;
         }
         
-        /* Styles pour les cartes et les colonnes */
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -436,7 +403,7 @@
             box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
         }
         
-        /* Section avec image de fond */
+        /* ========== SECTIONS AVEC BACKGROUND ========== */
         .bg-image-section {
             position: relative;
             padding: 10rem 0;
@@ -490,29 +457,87 @@
             opacity: 0.7;
         }
         
-        /* Styles pour le footer */
+        /* ========== FOOTER SIMPLE ========== */
         .footer {
             background-color: #FFFFFF;
             padding: 5rem 0 3rem;
         }
         
-        /* Animation pour les sections lors du scroll */
-        .in-view {
-            animation: fadeUp 0.8s ease-out forwards;
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(3rem);
-            }
+        .footer-logo {
+            max-width: 20rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .footer-content {
+            max-width: 60rem;
+        }
+        
+        .footer-text {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: #555;
+        }
+        
+        .footer-copyright {
+            margin-bottom: 0;
+            font-size: 1.3rem;
+            color: #999;
+        }
+        
+        /* ========== ANIMATIONS CORRIGÉES ========== */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in.animate {
+            opacity: 0;
+            transform: translateY(2rem);
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
         
-        /* Styles pour les appareils mobiles */
+        .in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .in-view.animate {
+            opacity: 0;
+            transform: translateY(3rem);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
             html {
                 font-size: 60%;
@@ -527,11 +552,11 @@
             }
             
             .header-fixed {
-                height: 10rem;
+                height: 8rem;
             }
             
             .header-fixed.scrolled {
-                height: 8rem;
+                height: 7rem;
             }
             
             .row {
@@ -550,58 +575,262 @@
             h2 {
                 font-size: 3.2rem;
             }
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 2.5rem;
+            }
             
-            /* Ajustements pour la section "L'OFFRE LOVENTIA" sur mobile */
-            #offre .card {
-                margin: 0 auto !important;
-                max-width: 100% !important;
+            .section-spacer {
+                padding: 8rem 0;
             }
         }
         
-        /* Corrections spécifiques pour iOS et iPad */
+        /* ========== CORRECTIONS iOS ========== */
         @supports (-webkit-touch-callout: none) {
-            /* Styles spécifiques pour iOS et Safari */
             .hero:before,
             .bg-image-section:before {
                 background-attachment: scroll !important;
-                transform: translateZ(0); /* Force hardware acceleration */
-                -webkit-backface-visibility: hidden; /* Améliore le rendu */
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
                 -webkit-transform: translate3d(0, 0, 0);
             }
-            
-            /* Fixes spécifiques pour certaines sections */
-            #hero:before {
-                background-position: center 30%;
+        }
+        
+        /* ========== STYLES SPÉCIFIQUES POUR LES NOUVELLES SECTIONS ========== */
+        
+        /* Section offre */
+        .premium-offer-card {
+            max-width: 60rem;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(183, 110, 121, 0.2);
+        }
+        
+        .offer-title {
+            text-transform: uppercase;
+            color: #333333 !important;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .offer-subtitle {
+            margin-bottom: 3rem;
+            color: #333333 !important;
+            font-size: 1.6rem;
+        }
+        
+        .price-highlight {
+            margin-bottom: 3rem;
+            color: #333333;
+            font-size: 2.4rem;
+            padding: 2rem;
+            background: rgba(183, 110, 121, 0.1);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(183, 110, 121, 0.2);
+        }
+        
+        .offer-features {
+            list-style: none;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+            color: #333333;
+        }
+        
+        .feature-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-item::before {
+            content: "–";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #B76E79;
+        }
+        
+        /* Section bonus */
+        .bonus-row {
+            margin-top: 5rem;
+            align-items: center;
+        }
+        
+        .bonus-row.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .bonus-title {
+            color: #B76E79;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .bonus-list {
+            list-style: none;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .bonus-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .bonus-bullet {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #B76E79;
+            font-weight: bold;
+        }
+        
+        .bonus-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+        }
+        
+        .bonus-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .bonus-image-container:hover .bonus-image {
+            transform: scale(1.05);
+        }
+        
+        /* Early bird section */
+        .early-bird-section {
+            margin-top: 6rem;
+            padding: 4rem;
+            background: rgba(183, 110, 121, 0.1);
+            border-radius: 2rem;
+        }
+        
+        .early-bird-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #B76E79;
+            margin-bottom: 1.5rem;
+        }
+        
+        .early-bird-text {
+            font-size: 1.6rem;
+            color: #333333;
+            max-width: 60rem;
+            margin: 0 auto;
+        }
+        
+        /* Final CTA */
+        .final-cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+        
+        .final-cta-subtitle {
+            margin-bottom: 4rem;
+            max-width: 70rem;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.8rem;
+        }
+        
+        .final-cta-btn {
+            font-size: 1.8rem;
+            padding: 1.5rem 3rem;
+        }
+        
+        /* Slogan */
+        .slogan-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.4;
+        }
+        
+        /* Section Calendly */
+        .calendly-section {
+            background: #F9F9F9;
+        }
+        
+        .calendly-container {
+            max-width: 90rem;
+            margin: 4rem auto 0;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+        }
+        
+        .calendly-inline-widget {
+            min-width: 320px;
+            height: 700px;
+        }
+        
+        /* Responsive pour les nouvelles sections */
+        @media (max-width: 992px) {
+            .bonus-row.reverse {
+                flex-direction: column;
             }
             
-            #offre:before {
-                background-position: center center;
+            .bonus-title {
+                text-align: center;
             }
             
-            #slogan-1:before {
-                background-position: center 40%;
+            .slogan-text {
+                font-size: 4rem;
             }
             
-            #final-cta:before {
-                background-position: center center;
+            .final-cta-title {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .offer-title {
+                font-size: 2.4rem;
+            }
+            
+            .price-highlight {
+                font-size: 2rem;
+            }
+            
+            .early-bird-title {
+                font-size: 2.2rem;
+            }
+            
+            .calendly-inline-widget {
+                height: 600px;
+            }
+            
+            .slogan-text {
+                font-size: 3.5rem;
+            }
+            
+            .final-cta-title {
+                font-size: 3.5rem;
             }
         }
     </style>
 
-
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2QR0YK46S3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2QR0YK46S3');
-</script>
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QR0YK46S3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2QR0YK46S3');
+    </script>
 </head>
+
 <body>
     <!-- Header fixe avec navigation -->
     <header id="main-header" class="header-fixed">
@@ -618,7 +847,7 @@
                     <li><a href="#storytelling" class="nav-link">Notre approche</a></li>
                     <li><a href="#offre" class="nav-link">L'offre Loventia</a></li>
                     <li><a href="#bonus" class="nav-link">Détails précieux</a></li>
-                    <li><a href="#date" class="nav-link long-text">Réservez votre moment</a></li>
+                    <li><a href="#date" class="nav-link">Réservez votre moment</a></li>
                 </ul>
             </nav>
             
@@ -633,7 +862,7 @@
             </button>
         </div>
         
-        <!-- Menu mobile (masqué par défaut) -->
+        <!-- Menu mobile -->
         <div id="mobile-menu" class="mobile-menu">
             <nav class="mobile-nav" aria-label="Navigation mobile">
                 <ul class="mobile-nav-list">
@@ -660,7 +889,7 @@
             </div>
         </section>
         
-        <!-- Section "Notre approche" / "L'Art de Raconter Votre Histoire" -->
+        <!-- Section "Notre approche" -->
         <section id="storytelling" class="section-spacer">
             <div class="container">
                 <div class="section-inner">
@@ -715,31 +944,26 @@
         <section id="offre" class="bg-image-section">
             <div class="container">
                 <div class="section-inner">
-                    <div class="card" style="max-width: 60rem; margin-left: auto; margin-right: 4rem; background-color: rgba(255, 255, 255, 0.95);">
-                        <h2 class="text-primary" style="text-transform: uppercase; color: #333333;">L'OFFRE LOVENTIA</h2>
-                        <p class="subtitle" style="margin-bottom: 3rem; color: #333333;">Film &amp; Reportage Photo de Mariage</p>
+                    <div class="card premium-offer-card">
+                        <h2 class="text-primary offer-title">L'OFFRE LOVENTIA</h2>
+                        <p class="subtitle offer-subtitle">Film &amp; Reportage Photo de Mariage</p>
                         
-                        <h3 class="text-center" style="margin-bottom: 3rem; color: #333333;">Formule unique : 2990 € TTC</h3>
+                        <h3 class="text-center price-highlight">Formule unique : 2990 € TTC</h3>
                         
-                        <ul style="list-style: none; margin-bottom: 4rem; padding-left: 2rem; color: #333333;">
-                            <li style="position: relative; padding-left: 3rem; margin-bottom: 1.5rem;">
-                                <span style="position: absolute; left: 0; top: 0;">–</span>
+                        <ul class="offer-features">
+                            <li class="feature-item">
                                 Un film de mariage cinématographique de 10 à 20 minutes
                             </li>
-                            <li style="position: relative; padding-left: 3rem; margin-bottom: 1.5rem;">
-                                <span style="position: absolute; left: 0; top: 0;">–</span>
+                            <li class="feature-item">
                                 Un reportage photo complet, du début à la fin de la journée
                             </li>
-                            <li style="position: relative; padding-left: 3rem; margin-bottom: 1.5rem;">
-                                <span style="position: absolute; left: 0; top: 0;">–</span>
+                            <li class="feature-item">
                                 Une approche artistique élégante et authentique, fidèle à votre histoire
                             </li>
-                            <li style="position: relative; padding-left: 3rem; margin-bottom: 1.5rem;">
-                                <span style="position: absolute; left: 0; top: 0;">–</span>
+                            <li class="feature-item">
                                 Un accompagnement personnalisé, avant et pendant le mariage
                             </li>
-                            <li style="position: relative; padding-left: 3rem; margin-bottom: 1.5rem;">
-                                <span style="position: absolute; left: 0; top: 0;">–</span>
+                            <li class="feature-item">
                                 Une galerie privée pour découvrir et partager vos images en toute simplicité
                             </li>
                         </ul>
@@ -760,7 +984,7 @@
             <div class="container">
                 <div class="section-inner">
                     <div class="text-center">
-                        <h2 class="text-white text-shadow" style="font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.4;">
+                        <h2 class="text-white text-shadow slogan-text">
                             Un jour unique.<br>
                             Un souvenir éternel.
                         </h2>
@@ -768,150 +992,136 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Les autres sections seront ajoutées par la suite -->
-
-
 
         <!-- Section "Et ce n'est pas tout..." / Bonus -->
-<section id="bonus" class="section-spacer">
-  <div class="container">
-      <div class="section-inner">
-          <h2 class="text-center">🎁 Et ce n'est pas tout…</h2>
-          <p class="subtitle text-center">
-              Parce que chaque détail compte, nous avons imaginé une série de <strong>bonus exclusifs</strong> pour rendre votre expérience encore plus précieuse — sans frais supplémentaires.
-          </p>
-          
-          <!-- Bloc 1 - Côté photo -->
-          <div class="row" style="margin-top: 5rem; align-items: center;">
-              <div class="col">
-                  <div class="card">
-                      <h3>📸 Côté photo</h3>
-                      <ul style="list-style: none; padding-left: 2rem; margin-top: 2rem;">
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Trois photos retouchées, imprimées et remises aux mariés le soir-même, soigneusement présentées dans un élégant petit cadre, pour repartir avec un souvenir tangible dès les premières heures de votre union. Parce qu'avoir une image entre les mains, tout de suite, c'est une émotion à part entière.
-                          </li>
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Une galerie privée en ligne, élégante, simple à partager, où vos invités pourront découvrir l'ensemble du reportage photo et commander des tirages ou albums s'ils le souhaitent. Un espace rien qu'à vous, pour revivre chaque instant en toute intimité.
-                          </li>
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Tout au long de la soirée, il est possible pour vos invités de faire imprimer sur place une photo retouchée, joliment présentée dans un cadre, pour repartir avec un souvenir personnalisé, inattendu… et chargé d'émotion.
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col">
-                <div style="position: relative; overflow: hidden; border-radius: 3rem; box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);">
-                      <img src="https://www.loventia.fr/asset/14.webp" alt="Photographie de mariage élégante" style="width: 100%; height: auto; display: block; transform: scale(1.02); transition: transform 0.5s ease;">
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Bloc 2 - Côté vidéo -->
-          <div class="row" style="margin-top: 6rem; margin-bottom: 3rem; align-items: center;">
-              <div class="col">
-                  <div style="position: relative; overflow: hidden; border-radius: 3rem; box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);">
-                      <img src="https://www.loventia.fr/asset/13.webp" alt="Film de mariage cinématographique" style="width: 100%; height: auto; display: block; transform: scale(1.02); transition: transform 0.5s ease;">
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <h3>🎬 Côté vidéo</h3>
-                      <ul style="list-style: none; padding-left: 2rem; margin-top: 2rem;">
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Un mini-film photo projeté pendant la soirée, créé le jour-même à partir des plus belles images déjà capturées. Ce moment tendre et inattendu permet à vos invités de revivre, en direct, l'émotion des premières heures du mariage.
-                          </li>
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Un teaser vidéo de 45 secondes, livré dès le vendredi suivant votre mariage. Ce court-métrage cinématographique, à la fois intense et délicat, vous replonge immédiatement dans l'émotion du jour, à peine quelques jours plus tard.
-                          </li>
-                          <li style="position: relative; padding-left: 3rem; margin-bottom: 2rem;">
-                              <span style="position: absolute; left: 0; top: 0;">–</span>
-                              Des interviews surprises de vos invités, captées avec discrétion et bienveillance tout au long de la journée. Quelques mots doux, souvenirs partagés ou messages spontanés… Ces instants capturés donnent une dimension unique, vivante et personnelle à votre film final.
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <!-- Bloc pour les plus organisés -->
-<div class="text-center" style="margin-top: 6rem;">
-  <h3 style="font-family: 'Playfair Display', serif; font-size: 2.6rem; color: #B76E79; margin-bottom: 1.5rem;">
-      💡 Et pour les plus organisés…
-  </h3>
-  <p style="font-size: 1.6rem; color: #333333; max-width: 60rem; margin: 0 auto;">
-      En réservant votre date plus de 6 mois à l'avance, vous bénéficiez d'une réduction de 20 %.<br>
-      <em>Une manière délicate de récompenser l’anticipation.</em>
-  </p>
-</div>
-      </div>
-  </div>
-</section>
+        <section id="bonus" class="section-spacer">
+            <div class="container">
+                <div class="section-inner">
+                    <h2 class="text-center">🎁 Et ce n'est pas tout…</h2>
+                    <p class="subtitle text-center">
+                        Parce que chaque détail compte, nous avons imaginé une série de <strong>bonus exclusifs</strong> pour rendre votre expérience encore plus précieuse — sans frais supplémentaires.
+                    </p>
+                    
+                    <!-- Bloc 1 - Côté photo -->
+                    <div class="row bonus-row">
+                        <div class="col">
+                            <div class="card">
+                                <h3 class="bonus-title">📸 Côté photo</h3>
+                                <ul class="bonus-list">
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Trois photos retouchées, imprimées et remises aux mariés le soir-même, soigneusement présentées dans un élégant petit cadre, pour repartir avec un souvenir tangible dès les premières heures de votre union. Parce qu'avoir une image entre les mains, tout de suite, c'est une émotion à part entière.
+                                    </li>
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Une galerie privée en ligne, élégante, simple à partager, où vos invités pourront découvrir l'ensemble du reportage photo et commander des tirages ou albums s'ils le souhaitent. Un espace rien qu'à vous, pour revivre chaque instant en toute intimité.
+                                    </li>
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Tout au long de la soirée, il est possible pour vos invités de faire imprimer sur place une photo retouchée, joliment présentée dans un cadre, pour repartir avec un souvenir personnalisé, inattendu… et chargé d'émotion.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="bonus-image-container">
+                                <img src="https://www.loventia.fr/asset/14.webp" alt="Photographie de mariage élégante" class="bonus-image">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bloc 2 - Côté vidéo -->
+                    <div class="row bonus-row reverse">
+                        <div class="col">
+                            <div class="bonus-image-container">
+                                <img src="https://www.loventia.fr/asset/13.webp" alt="Film de mariage cinématographique" class="bonus-image">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <h3 class="bonus-title">🎬 Côté vidéo</h3>
+                                <ul class="bonus-list">
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Un mini-film photo projeté pendant la soirée, créé le jour-même à partir des plus belles images déjà capturées. Ce moment tendre et inattendu permet à vos invités de revivre, en direct, l'émotion des premières heures du mariage.
+                                    </li>
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Un teaser vidéo de 45 secondes, livré dès le vendredi suivant votre mariage. Ce court-métrage cinématographique, à la fois intense et délicat, vous replonge immédiatement dans l'émotion du jour, à peine quelques jours plus tard.
+                                    </li>
+                                    <li class="bonus-item">
+                                        <span class="bonus-bullet">—</span>
+                                        Des interviews surprises de vos invités, captées avec discrétion et bienveillance tout au long de la journée. Quelques mots doux, souvenirs partagés ou messages spontanés… Ces instants capturés donnent une dimension unique, vivante et personnelle à votre film final.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bloc pour les plus organisés -->
+                    <div class="text-center early-bird-section">
+                        <h3 class="early-bird-title">💡 Et pour les plus organisés…</h3>
+                        <p class="early-bird-text">
+                            En réservant votre date plus de 6 mois à l'avance, vous bénéficiez d'une réduction de 20 %.<br>
+                            <em>Une manière délicate de récompenser l'anticipation.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-
-
-<!-- Section finale avec appel à l'action -->
-<section id="final-cta" class="bg-image-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.loventia.fr/asset/12.webp'); background-position: center center; height: 80vh; display: flex; align-items: center; justify-content: center; filter: grayscale(100%);">
-  <div class="container">
-      <div class="section-inner">
-          <div class="text-center">
-              <h2 class="text-white text-shadow" style="font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.4; margin-bottom: 2rem;">
-                  Et si votre histoire commençait ici ?
-              </h2>
-              <p class="subtitle text-white text-shadow" style="margin-bottom: 4rem; max-width: 70rem; margin-left: auto; margin-right: auto;">
-                  Laissez-nous capturer ce qui vous rend uniques. Cliquez ici pour vérifier si votre date est encore disponible.
-              </p>
-              <div class="btn-group">
-                  <a href="#date" class="btn fade-in" style="font-size: 1.8rem; padding: 1.5rem 3rem;">Réservez votre moment</a>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-
-
+        <!-- Section finale avec appel à l'action -->
+        <section id="final-cta" class="bg-image-section">
+            <div class="container">
+                <div class="section-inner">
+                    <div class="text-center">
+                        <h2 class="text-white text-shadow final-cta-title">
+                            Et si votre histoire commençait ici ?
+                        </h2>
+                        <p class="subtitle text-white text-shadow final-cta-subtitle">
+                            Laissez-nous capturer ce qui vous rend uniques. Cliquez ici pour vérifier si votre date est encore disponible.
+                        </p>
+                        <div class="btn-group">
+                            <a href="#date" class="btn fade-in final-cta-btn">Réservez votre moment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Section de réservation Calendly -->
-<section id="date" class="section-spacer bg-light">
-  <div class="container">
-    <div class="section-inner text-center">
-      <h2>Réservez votre date</h2>
-      <p class="subtitle">Choisissez le créneau qui vous convient pour discuter de votre projet ou bloquer votre date.</p>
+        <section id="date" class="section-spacer calendly-section">
+            <div class="container">
+                <div class="section-inner text-center">
+                    <h2>Réservez votre date</h2>
+                    <p class="subtitle">Choisissez le créneau qui vous convient pour discuter de votre projet ou bloquer votre date.</p>
 
-      <!-- Début de widget en ligne Calendly -->
-      <div class="calendly-inline-widget" data-url="https://calendly.com/loventia/reservation" style="min-width:320px; height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-      <!-- Fin de widget en ligne Calendly -->
-    </div>
-  </div>
-</section>
+                    <!-- Widget Calendly -->
+                    <div class="calendly-container">
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/loventia/reservation"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-<!-- Footer enrichi avec texte centré -->
-<footer class="footer" style="background-color: #FFFFFF; padding: 5rem 0 3rem;">
-  <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-    
-    <!-- Logo -->
-    <div class="footer-logo" style="max-width: 20rem; margin-bottom: 2rem;">
-      <img src="https://www.loventia.fr/asset/1-BASE-TRANS.png" alt="Loventia - Films et photos de mariage" style="width: 100%; height: auto;">
-    </div>
+    <!-- Footer enrichi -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="https://www.loventia.fr/asset/1-BASE-TRANS.png" alt="Loventia - Films et photos de mariage">
+            </div>
 
-    <!-- Texte légal -->
-    <div style="max-width: 600px;">
-      <p style="margin-bottom: 1rem; font-size: 1.4rem; color: #555;">Loventia est une marque déposée de Nuit Blanche Production</p>
-      <p style="margin-bottom: 1rem; font-size: 1.4rem; color: #555;">Siège social : 39 rue Jean Mermoz, 88190 Golbey, France</p>
-      <p style="margin-bottom: 0; font-size: 1.3rem; color: #999;">&copy; 2025 Nuit Blanche Production. Tous droits réservés.</p>
-    </div>
-
-  </div>
-</footer>
-
-
-
+            <!-- Texte légal -->
+            <div class="footer-content">
+                <p class="footer-text">Loventia est une marque déposée de Nuit Blanche Production</p>
+                <p class="footer-text">Siège social : 39 rue Jean Mermoz, 88190 Golbey, France</p>
+                <p class="footer-copyright">&copy; 2025 Nuit Blanche Production. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -922,7 +1132,7 @@
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
             const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
             
-            // 1. Gestion du header au scroll avec effet raffiné
+            // 1. Gestion simple du header au scroll
             function handleHeaderScroll() {
                 if (window.scrollY > 50) {
                     header.classList.add('scrolled');
@@ -931,69 +1141,46 @@
                 }
             }
             
-            // Initialiser l'état du header au chargement
             handleHeaderScroll();
-            
-            // Écouter l'événement de scroll
             window.addEventListener('scroll', handleHeaderScroll);
             
-            // 2. Gestion du menu mobile avec animation fluide
+            // 2. Gestion du menu mobile
             function toggleMobileMenu() {
                 const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
                 
-                // Assurez-vous que la classe active est correctement basculée sur le bouton
                 menuToggle.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
                 menuToggle.setAttribute('aria-expanded', !isExpanded);
                 
-                // Bloquer le défilement du body quand le menu est ouvert
                 document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
-                
-                // Animer les liens avec un délai progressif
-                if (!isExpanded) {
-                    mobileNavLinks.forEach((link, index) => {
-                        setTimeout(() => {
-                            link.style.opacity = '1';
-                            link.style.transform = 'translateY(0)';
-                        }, 100 + (index * 50));
-                    });
-                } else {
-                    mobileNavLinks.forEach(link => {
-                        link.style.opacity = '0';
-                        link.style.transform = 'translateY(1rem)';
-                    });
-                }
             }
             
             menuToggle.addEventListener('click', toggleMobileMenu);
             
-            // 3. Fermer le menu mobile lors du clic sur un lien et Smooth Scroll
+            // 3. Fermer le menu mobile et smooth scroll
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Fermer le menu mobile
                     if (mobileMenu.classList.contains('active')) {
                         toggleMobileMenu();
                     }
                     
-                    // Récupérer l'ID de la section cible
                     const targetId = this.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     
                     if (targetSection) {
-                        // Smooth scroll vers la section
                         setTimeout(() => {
                             window.scrollTo({
                                 top: targetSection.offsetTop - header.offsetHeight,
                                 behavior: 'smooth'
                             });
-                        }, 300); // Délai pour permettre la fermeture du menu
+                        }, 300);
                     }
                 });
             });
             
-            // 4. Smooth scroll pour tous les liens d'ancrage
+            // 4. Smooth scroll pour tous les liens
             allNavLinks.forEach(link => {
                 if (!link.classList.contains('mobile-nav-link')) {
                     link.addEventListener('click', function(e) {
@@ -1026,7 +1213,6 @@
                     const isInViewport = scrollPosition >= sectionTop && 
                                          scrollPosition < sectionTop + sectionHeight;
                     
-                    // Mettre à jour les liens de navigation desktop et mobile
                     document.querySelectorAll(`.nav-link[href="#${sectionId}"], .mobile-nav-link[href="#${sectionId}"]`)
                     .forEach(link => {
                         if (isInViewport) {
@@ -1042,9 +1228,9 @@
             
             window.addEventListener('scroll', setActiveNavigation);
             
-            // 6. Gestion des animations d'entrée
+            // 6. Animations d'entrée simples
             const observerOptions = {
-                threshold: 0.2,
+                threshold: 0.15,
                 rootMargin: '0px 0px -10% 0px'
             };
             
@@ -1057,17 +1243,16 @@
                 });
             }, observerOptions);
             
-            // Observer les sections principales
+            // Observer les sections
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
             
-            // Ajout : Animation douce du logo au survol
+            // 7. Effet simple sur le logo
             const logoLink = document.querySelector('.logo-link');
             if (logoLink) {
                 logoLink.addEventListener('mouseenter', function() {
                     this.querySelector('.logo').style.transform = 'scale(1.05)';
-                    this.querySelector('.logo').style.transition = 'transform 0.3s ease';
                 });
                 
                 logoLink.addEventListener('mouseleave', function() {
