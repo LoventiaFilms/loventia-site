@@ -27,9 +27,6 @@
     <link rel="icon" type="image/png" href="https://www.loventia.fr/asset/2-FAV-2.png">
     <link rel="apple-touch-icon" href="https://www.loventia.fr/asset/2-FAV-2.png">
     
-    <!-- Feuille de style CSS -->
-    <link rel="stylesheet" href="style.css">
-    
     <!-- Canonical URL -->
     <link rel="canonical" href="">
     
@@ -59,6 +56,125 @@
             line-height: 1.6;
             color: #333333;
             overflow-x: hidden;
+            opacity: 0;
+            animation: pageLoad 1.5s ease-out 0.3s forwards;
+        }
+        
+        /* ========== ANIMATIONS CINÉMATOGRAPHIQUES ========== */
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-1rem);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        
+        @keyframes parallaxFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-0.5rem);
+            }
+        }
+        
+        /* Classes d'animation */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(4rem);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .animate-fade-left {
+            opacity: 0;
+            transform: translateX(-4rem);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .animate-fade-right {
+            opacity: 0;
+            transform: translateX(4rem);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .in-view {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+        
+        .float-animation {
+            animation: parallaxFloat 6s ease-in-out infinite;
         }
         
         .container {
@@ -68,22 +184,24 @@
             padding: 0 2rem;
         }
         
-        /* ========== HEADER SIMPLE ET STABLE ========== */
+        /* ========== HEADER TOUJOURS VISIBLE ========== */
         .header-fixed {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: #FFFFFF;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
             height: 10rem;
             transition: all 0.3s ease;
         }
         
         .header-fixed.scrolled {
             height: 8rem;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.98);
         }
         
         .header-container {
@@ -109,6 +227,7 @@
             width: auto;
             display: block;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
         }
         
         .logo:hover {
@@ -127,6 +246,7 @@
             height: 100%;
         }
         
+        /* NAVIGATION SIMPLIFIÉE */
         .nav-link {
             color: #333333;
             text-decoration: none;
@@ -146,7 +266,7 @@
             width: 0;
             height: 2px;
             background-color: #B76E79;
-            transition: all 0.3s ease;
+            transition: width 0.3s ease;
             transform: translateX(-50%);
         }
         
@@ -159,7 +279,7 @@
             color: #B76E79;
         }
         
-        /* Menu mobile simple */
+        /* Menu mobile */
         .menu-toggle {
             display: none;
             background: none;
@@ -204,7 +324,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #F4E1D2;
+            background: linear-gradient(135deg, #F4E1D2, #E8C5B8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,7 +364,7 @@
             color: #B76E79;
         }
         
-        /* ========== HERO SECTION STABLE ========== */
+        /* ========== HERO SECTION AVEC ANIMATIONS ========== */
         .hero {
             position: relative;
             height: 100vh;
@@ -264,13 +384,24 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 110%;
+            height: 110%;
             background-image: url('https://www.loventia.fr/asset/05.webp');
             background-size: cover;
             background-position: center 30%;
             background-repeat: no-repeat;
             z-index: -1;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+            filter: brightness(0.85) contrast(1.1);
+        }
+        
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1) translateX(0) translateY(0);
+            }
+            100% {
+                transform: scale(1.08) translateX(-2rem) translateY(-1rem);
+            }
         }
         
         .hero-content {
@@ -279,6 +410,16 @@
             padding: 0 2rem;
             position: relative;
             z-index: 2;
+            transform: translateY(6rem);
+            opacity: 0;
+            animation: heroContentReveal 2s ease-out 2.5s forwards;
+        }
+        
+        @keyframes heroContentReveal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
         h1 {
@@ -286,6 +427,16 @@
             font-size: 5rem;
             line-height: 1.2;
             margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            background: linear-gradient(45deg, #FFFFFF, #F0F0F0, #FFFFFF);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+            text-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
         }
         
         h2 {
@@ -312,6 +463,10 @@
             margin-right: auto;
         }
         
+        .hero .subtitle {
+            animation: floatText 4s ease-in-out infinite;
+        }
+        
         .text-white {
             color: #FFFFFF;
         }
@@ -320,37 +475,59 @@
             text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
         }
         
-        /* ========== BOUTONS SIMPLES ========== */
+        /* ========== BOUTONS AVEC ANIMATIONS ========== */
         .btn {
             display: inline-block;
             padding: 1.2rem 2.8rem;
-            background-color: #B76E79;
+            background: linear-gradient(135deg, #B76E79, #A85C6F);
             color: #FFFFFF;
             text-decoration: none;
             border-radius: 3rem;
             font-weight: 600;
             font-size: 1.6rem;
-            transition: all 0.3s ease;
-            border: 0.2rem solid #B76E79;
-            box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 0.2rem solid transparent;
+            box-shadow: 0 0.5rem 2rem rgba(183, 110, 121, 0.3);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(3rem);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 3.5s forwards;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
-            background-color: #A05C67;
-            border-color: #A05C67;
-            transform: translateY(-0.2rem);
-            box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #A05C67, #8E4A55);
+            transform: translateY(-0.5rem) scale(1.05);
+            box-shadow: 0 1rem 3rem rgba(183, 110, 121, 0.4);
         }
         
         .btn-secondary {
-            background-color: transparent;
+            background: transparent;
             color: #B76E79;
+            border: 0.2rem solid #B76E79;
+            box-shadow: 0 0.5rem 2rem rgba(183, 110, 121, 0.2);
         }
         
         .btn-secondary:hover {
-            background-color: #B76E79;
+            background: linear-gradient(135deg, #B76E79, #A85C6F);
             color: #FFFFFF;
+            border-color: transparent;
         }
         
         .btn-group {
@@ -393,17 +570,35 @@
             background-color: #FFFFFF;
             border-radius: 2rem;
             padding: 3rem;
-            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.08);
             height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(183, 110, 121, 0.1);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(183, 110, 121, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .card:hover::before {
+            left: 100%;
         }
         
         .card:hover {
             transform: translateY(-0.5rem);
-            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2rem 6rem rgba(183, 110, 121, 0.15);
         }
         
-        /* ========== SECTIONS AVEC BACKGROUND ========== */
+        /* ========== SECTIONS AVEC BACKGROUND ANIMÉ ========== */
         .bg-image-section {
             position: relative;
             padding: 10rem 0;
@@ -415,16 +610,22 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 110%;
+            height: 110%;
             z-index: -1;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            transition: transform 10s ease-in-out;
+        }
+        
+        .bg-image-section:hover:before {
+            transform: scale(1.02);
         }
         
         #offre:before {
             background-image: url('https://www.loventia.fr/asset/hero.webp');
+            filter: brightness(0.7) contrast(1.2);
         }
         
         #slogan-1 {
@@ -439,27 +640,102 @@
         #slogan-1:before {
             background-image: url('https://www.loventia.fr/asset/03.webp');
             background-position: center 40%;
+            filter: brightness(0.6) contrast(1.3);
+            animation: slowZoom 15s ease-in-out infinite alternate;
         }
         
+        @keyframes slowZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* ========== SECTION FINAL CTA ========== */
         #final-cta {
+            position: relative;
             padding: 0;
             height: 80vh;
             min-height: 50rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         
         #final-cta:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 110%;
             background-image: url('https://www.loventia.fr/asset/12.webp');
+            background-size: cover;
             background-position: center center;
-            filter: grayscale(100%);
-            opacity: 0.7;
+            background-repeat: no-repeat;
+            z-index: -1;
+            filter: grayscale(100%) brightness(0.5) contrast(1.4);
+            animation: kenBurns 25s ease-in-out infinite alternate;
         }
         
-        /* ========== FOOTER SIMPLE ========== */
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 80rem;
+            padding: 0 2rem;
+        }
+        
+        .final-cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+            background: linear-gradient(45deg, #FFFFFF, #F0F0F0, #FFFFFF);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
+        }
+        
+        .final-cta-subtitle {
+            margin-bottom: 4rem;
+            max-width: 70rem;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+            animation: floatText 5s ease-in-out infinite;
+        }
+        
+        .final-cta-btn {
+            font-size: 1.8rem;
+            padding: 1.5rem 3rem;
+            animation: glow 2s ease-in-out infinite alternate;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 1rem 3rem rgba(183, 110, 121, 0.4);
+            }
+            to {
+                box-shadow: 0 1rem 4rem rgba(183, 110, 121, 0.6), 0 0 2rem rgba(183, 110, 121, 0.3);
+            }
+        }
+        
+        /* ========== FOOTER ========== */
         .footer {
-            background-color: #FFFFFF;
+            background: linear-gradient(135deg, #333333, #2A2A2A);
+            color: #FFFFFF;
             padding: 5rem 0 3rem;
         }
         
@@ -487,54 +763,228 @@
         .footer-text {
             margin-bottom: 1rem;
             font-size: 1.4rem;
-            color: #555;
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .footer-copyright {
             margin-bottom: 0;
             font-size: 1.3rem;
-            color: #999;
+            color: rgba(255, 255, 255, 0.6);
         }
         
-        /* ========== ANIMATIONS CORRIGÉES ========== */
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        /* ========== STYLES POUR LES NOUVELLES SECTIONS ========== */
+        
+        /* Section offre */
+        .premium-offer-card {
+            max-width: 60rem;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(183, 110, 121, 0.2);
+            backdrop-filter: blur(10px);
         }
         
-        .fade-in.animate {
-            opacity: 0;
-            transform: translateY(2rem);
-            animation: fadeIn 1s ease forwards;
+        .offer-title {
+            text-transform: uppercase;
+            color: #333333 !important;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
         }
         
-        .delay-300 {
-            animation-delay: 0.3s;
+        .offer-subtitle {
+            margin-bottom: 3rem;
+            color: #333333 !important;
+            font-size: 1.6rem;
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .price-highlight {
+            margin-bottom: 3rem;
+            color: #333333;
+            font-size: 2.4rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(183, 110, 121, 0.1), rgba(183, 110, 121, 0.05));
+            border-radius: 1.5rem;
+            border: 1px solid rgba(183, 110, 121, 0.2);
         }
         
-        .in-view {
-            opacity: 1;
-            transform: translateY(0);
+        .offer-features {
+            list-style: none;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+            color: #333333;
         }
         
-        .in-view.animate {
-            opacity: 0;
-            transform: translateY(3rem);
-            animation: fadeUp 0.8s ease-out forwards;
+        .feature-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            color: #333333;
         }
         
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .feature-item::before {
+            content: "–";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #B76E79;
+            font-weight: bold;
+        }
+        
+        /* ========== SECTION BONUS ========== */
+        .bonus-section-title {
+            margin-bottom: 2rem;
+        }
+        
+        .bonus-section-subtitle {
+            margin-bottom: 5rem;
+        }
+        
+        /* Bloc photo : Texte à GAUCHE, Image à DROITE */
+        .bonus-photo-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem;
+            gap: 4rem;
+        }
+        
+        .bonus-photo-text {
+            flex: 1;
+        }
+        
+        .bonus-photo-image {
+            flex: 1;
+        }
+        
+        /* Bloc vidéo : Image à GAUCHE, Texte à DROITE */
+        .bonus-video-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem;
+            gap: 4rem;
+        }
+        
+        .bonus-video-image {
+            flex: 1;
+        }
+        
+        .bonus-video-text {
+            flex: 1;
+        }
+        
+        .bonus-card {
+            background-color: #FFFFFF;
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(183, 110, 121, 0.1);
+        }
+        
+        .bonus-title {
+            color: #B76E79;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .bonus-list {
+            list-style: none;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .bonus-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .bonus-bullet {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #B76E79;
+            font-weight: bold;
+        }
+        
+        .bonus-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3rem;
+            box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .bonus-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .bonus-image-container:hover .bonus-image {
+            transform: scale(1.02);
+        }
+        
+        /* Early bird section */
+        .early-bird-section {
+            margin-top: 6rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(183, 110, 121, 0.1), rgba(212, 165, 116, 0.1));
+            border-radius: 2rem;
+            border: 1px solid rgba(183, 110, 121, 0.2);
+        }
+        
+        .early-bird-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #B76E79;
+            margin-bottom: 1.5rem;
+        }
+        
+        .early-bird-text {
+            font-size: 1.6rem;
+            color: #333333;
+            max-width: 60rem;
+            margin: 0 auto;
+        }
+        
+        /* Slogan */
+        .slogan-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.4;
+            background: linear-gradient(45deg, #FFFFFF, #F0F0F0, #FFFFFF);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+        
+        /* ========== SECTION CALENDLY SIMPLIFIÉE ========== */
+        .calendly-section {
+            background: linear-gradient(135deg, #F9F9F9, #F4F4F4);
+        }
+        
+        .calendly-text-content {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .calendly-widget-container {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .calendly-inline-widget {
+            width: 100% !important;
+            height: 700px;
+            min-height: 700px;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 2rem 8rem rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
         
         /* ========== RESPONSIVE ========== */
@@ -575,15 +1025,83 @@
             h2 {
                 font-size: 3.2rem;
             }
+            
+            /* RESPONSIVE BONUS : Mobile First - Texte TOUJOURS en premier */
+            .bonus-photo-block,
+            .bonus-video-block {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .bonus-photo-text,
+            .bonus-video-text {
+                order: 1; /* Texte toujours en premier sur mobile */
+            }
+            
+            .bonus-photo-image,
+            .bonus-video-image {
+                order: 2; /* Image toujours en second sur mobile */
+            }
+            
+            .bonus-title {
+                text-align: center;
+            }
+            
+            .slogan-text {
+                font-size: 4rem;
+            }
+            
+            .final-cta-title {
+                font-size: 4rem;
+            }
+            
+            .calendly-inline-widget {
+                height: 600px;
+                min-height: 600px;
+            }
         }
         
         @media (max-width: 768px) {
-            .card {
+            .card, .bonus-card {
                 padding: 2.5rem;
             }
             
             .section-spacer {
                 padding: 8rem 0;
+            }
+            
+            .offer-title {
+                font-size: 2.4rem;
+            }
+            
+            .price-highlight {
+                font-size: 2rem;
+            }
+            
+            .early-bird-title {
+                font-size: 2.2rem;
+            }
+            
+            .calendly-inline-widget {
+                height: 550px;
+                min-height: 550px;
+            }
+            
+            .slogan-text {
+                font-size: 3.5rem;
+            }
+            
+            .final-cta-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .bonus-photo-block,
+            .bonus-video-block {
+                gap: 1.5rem;
             }
         }
         
@@ -598,226 +1116,37 @@
             }
         }
         
-        /* ========== STYLES SPÉCIFIQUES POUR LES NOUVELLES SECTIONS ========== */
-        
-        /* Section offre */
-        .premium-offer-card {
-            max-width: 60rem;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(183, 110, 121, 0.2);
+        /* ========== OPTIMISATIONS PERFORMANCE ========== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .hero:before {
+                animation: none;
+            }
+            
+            .bg-image-section:before {
+                animation: none;
+            }
         }
         
-        .offer-title {
-            text-transform: uppercase;
-            color: #333333 !important;
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .offer-subtitle {
-            margin-bottom: 3rem;
-            color: #333333 !important;
-            font-size: 1.6rem;
-        }
-        
-        .price-highlight {
-            margin-bottom: 3rem;
-            color: #333333;
-            font-size: 2.4rem;
-            padding: 2rem;
-            background: rgba(183, 110, 121, 0.1);
-            border-radius: 1.5rem;
-            border: 1px solid rgba(183, 110, 121, 0.2);
-        }
-        
-        .offer-features {
-            list-style: none;
-            margin-bottom: 4rem;
-            padding-left: 2rem;
-            color: #333333;
-        }
-        
-        .feature-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-item::before {
-            content: "–";
+        /* Classes utilitaires */
+        .sr-only {
             position: absolute;
-            left: 0;
-            top: 0;
-            color: #B76E79;
-        }
-        
-        /* Section bonus */
-        .bonus-row {
-            margin-top: 5rem;
-            align-items: center;
-        }
-        
-        .bonus-row.reverse {
-            flex-direction: row-reverse;
-        }
-        
-        .bonus-title {
-            color: #B76E79;
-            font-size: 2.4rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-        
-        .bonus-list {
-            list-style: none;
-            padding-left: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .bonus-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2rem;
-        }
-        
-        .bonus-bullet {
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #B76E79;
-            font-weight: bold;
-        }
-        
-        .bonus-image-container {
-            position: relative;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
             overflow: hidden;
-            border-radius: 3rem;
-            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-        }
-        
-        .bonus-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .bonus-image-container:hover .bonus-image {
-            transform: scale(1.05);
-        }
-        
-        /* Early bird section */
-        .early-bird-section {
-            margin-top: 6rem;
-            padding: 4rem;
-            background: rgba(183, 110, 121, 0.1);
-            border-radius: 2rem;
-        }
-        
-        .early-bird-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.6rem;
-            color: #B76E79;
-            margin-bottom: 1.5rem;
-        }
-        
-        .early-bird-text {
-            font-size: 1.6rem;
-            color: #333333;
-            max-width: 60rem;
-            margin: 0 auto;
-        }
-        
-        /* Final CTA */
-        .final-cta-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            line-height: 1.4;
-            margin-bottom: 2rem;
-        }
-        
-        .final-cta-subtitle {
-            margin-bottom: 4rem;
-            max-width: 70rem;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.8rem;
-        }
-        
-        .final-cta-btn {
-            font-size: 1.8rem;
-            padding: 1.5rem 3rem;
-        }
-        
-        /* Slogan */
-        .slogan-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            line-height: 1.4;
-        }
-        
-        /* Section Calendly */
-        .calendly-section {
-            background: #F9F9F9;
-        }
-        
-        .calendly-container {
-            max-width: 90rem;
-            margin: 4rem auto 0;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-        }
-        
-        .calendly-inline-widget {
-            min-width: 320px;
-            height: 700px;
-        }
-        
-        /* Responsive pour les nouvelles sections */
-        @media (max-width: 992px) {
-            .bonus-row.reverse {
-                flex-direction: column;
-            }
-            
-            .bonus-title {
-                text-align: center;
-            }
-            
-            .slogan-text {
-                font-size: 4rem;
-            }
-            
-            .final-cta-title {
-                font-size: 4rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .offer-title {
-                font-size: 2.4rem;
-            }
-            
-            .price-highlight {
-                font-size: 2rem;
-            }
-            
-            .early-bird-title {
-                font-size: 2.2rem;
-            }
-            
-            .calendly-inline-widget {
-                height: 600px;
-            }
-            
-            .slogan-text {
-                font-size: 3.5rem;
-            }
-            
-            .final-cta-title {
-                font-size: 3.5rem;
-            }
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 
@@ -880,11 +1209,11 @@
     <main>
         <!-- Section Hero avec image de fond plein écran -->
         <section id="hero" class="hero">
-            <div class="hero-content fade-in">
+            <div class="hero-content">
                 <h1 class="text-white text-shadow">L'émotion d'un film, l'élégance d'un regard.</h1>
                 <p class="subtitle text-white text-shadow">Quand les souvenirs prennent vie pour toujours</p>
                 <div class="btn-group">
-                    <a href="#date" class="btn fade-in delay-300">Réservez votre moment</a>
+                    <a href="#date" class="btn">Réservez votre moment</a>
                 </div>
             </div>
         </section>
@@ -893,8 +1222,8 @@
         <section id="storytelling" class="section-spacer">
             <div class="container">
                 <div class="section-inner">
-                    <h2 class="text-center">L'Art de Raconter Votre Histoire</h2>
-                    <p class="subtitle">
+                    <h2 class="text-center animate-fade-up">L'Art de Raconter Votre Histoire</h2>
+                    <p class="subtitle text-center animate-fade-up">
                         Chez Loventia, chaque mariage devient un récit visuel unique, entre émotion pure, élégance lumineuse et narration cinématographique.  
                         Nous ne capturons pas seulement des images. Nous faisons vivre vos souvenirs — pour toujours.
                     </p>
@@ -902,7 +1231,7 @@
                     <div class="row">
                         <!-- Carte 1 -->
                         <div class="col">
-                            <div class="card">
+                            <div class="card animate-fade-left">
                                 <h3>🎬 Une esthétique cinématographique</h3>
                                 <p class="text-center">
                                     Des images douces et naturelles, inspirées du cinéma d'auteur.<br>
@@ -914,7 +1243,7 @@
                         
                         <!-- Carte 2 -->
                         <div class="col">
-                            <div class="card">
+                            <div class="card animate-scale">
                                 <h3>💖 Une narration authentique</h3>
                                 <p class="text-center">
                                     Nous racontons votre histoire telle qu'elle se vit.<br>
@@ -926,7 +1255,7 @@
                         
                         <!-- Carte 3 -->
                         <div class="col">
-                            <div class="card">
+                            <div class="card animate-fade-right">
                                 <h3>🌿 Une expérience élégante et fluide</h3>
                                 <p class="text-center">
                                     Avant, pendant et après le mariage,<br>
@@ -944,7 +1273,7 @@
         <section id="offre" class="bg-image-section">
             <div class="container">
                 <div class="section-inner">
-                    <div class="card premium-offer-card">
+                    <div class="card premium-offer-card animate-scale">
                         <h2 class="text-primary offer-title">L'OFFRE LOVENTIA</h2>
                         <p class="subtitle offer-subtitle">Film &amp; Reportage Photo de Mariage</p>
                         
@@ -984,7 +1313,7 @@
             <div class="container">
                 <div class="section-inner">
                     <div class="text-center">
-                        <h2 class="text-white text-shadow slogan-text">
+                        <h2 class="text-white text-shadow slogan-text float-animation">
                             Un jour unique.<br>
                             Un souvenir éternel.
                         </h2>
@@ -997,15 +1326,15 @@
         <section id="bonus" class="section-spacer">
             <div class="container">
                 <div class="section-inner">
-                    <h2 class="text-center">🎁 Et ce n'est pas tout…</h2>
-                    <p class="subtitle text-center">
+                    <h2 class="text-center bonus-section-title animate-fade-up">🎁 Et ce n'est pas tout…</h2>
+                    <p class="subtitle text-center bonus-section-subtitle animate-fade-up">
                         Parce que chaque détail compte, nous avons imaginé une série de <strong>bonus exclusifs</strong> pour rendre votre expérience encore plus précieuse — sans frais supplémentaires.
                     </p>
                     
-                    <!-- Bloc 1 - Côté photo -->
-                    <div class="row bonus-row">
-                        <div class="col">
-                            <div class="card">
+                    <!-- Bloc 1 - Côté photo : TEXTE À GAUCHE, IMAGE À DROITE -->
+                    <div class="bonus-photo-block">
+                        <div class="bonus-photo-text">
+                            <div class="bonus-card">
                                 <h3 class="bonus-title">📸 Côté photo</h3>
                                 <ul class="bonus-list">
                                     <li class="bonus-item">
@@ -1023,22 +1352,22 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="bonus-photo-image">
                             <div class="bonus-image-container">
                                 <img src="https://www.loventia.fr/asset/14.webp" alt="Photographie de mariage élégante" class="bonus-image">
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Bloc 2 - Côté vidéo -->
-                    <div class="row bonus-row reverse">
-                        <div class="col">
+                    <!-- Bloc 2 - Côté vidéo : IMAGE À GAUCHE, TEXTE À DROITE -->
+                    <div class="bonus-video-block">
+                        <div class="bonus-video-image">
                             <div class="bonus-image-container">
                                 <img src="https://www.loventia.fr/asset/13.webp" alt="Film de mariage cinématographique" class="bonus-image">
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card">
+                        <div class="bonus-video-text">
+                            <div class="bonus-card">
                                 <h3 class="bonus-title">🎬 Côté vidéo</h3>
                                 <ul class="bonus-list">
                                     <li class="bonus-item">
@@ -1059,7 +1388,7 @@
                     </div>
                     
                     <!-- Bloc pour les plus organisés -->
-                    <div class="text-center early-bird-section">
+                    <div class="text-center early-bird-section animate-scale">
                         <h3 class="early-bird-title">💡 Et pour les plus organisés…</h3>
                         <p class="early-bird-text">
                             En réservant votre date plus de 6 mois à l'avance, vous bénéficiez d'une réduction de 20 %.<br>
@@ -1072,19 +1401,15 @@
 
         <!-- Section finale avec appel à l'action -->
         <section id="final-cta" class="bg-image-section">
-            <div class="container">
-                <div class="section-inner">
-                    <div class="text-center">
-                        <h2 class="text-white text-shadow final-cta-title">
-                            Et si votre histoire commençait ici ?
-                        </h2>
-                        <p class="subtitle text-white text-shadow final-cta-subtitle">
-                            Laissez-nous capturer ce qui vous rend uniques. Cliquez ici pour vérifier si votre date est encore disponible.
-                        </p>
-                        <div class="btn-group">
-                            <a href="#date" class="btn fade-in final-cta-btn">Réservez votre moment</a>
-                        </div>
-                    </div>
+            <div class="final-cta-content">
+                <h2 class="final-cta-title">
+                    Et si votre histoire commençait ici ?
+                </h2>
+                <p class="final-cta-subtitle">
+                    Laissez-nous capturer ce qui vous rend uniques. Cliquez ici pour vérifier si votre date est encore disponible.
+                </p>
+                <div class="btn-group">
+                    <a href="#date" class="btn final-cta-btn">Réservez votre moment</a>
                 </div>
             </div>
         </section>
@@ -1092,15 +1417,16 @@
         <!-- Section de réservation Calendly -->
         <section id="date" class="section-spacer calendly-section">
             <div class="container">
-                <div class="section-inner text-center">
-                    <h2>Réservez votre date</h2>
-                    <p class="subtitle">Choisissez le créneau qui vous convient pour discuter de votre projet ou bloquer votre date.</p>
-
-                    <!-- Widget Calendly -->
-                    <div class="calendly-container">
-                        <div class="calendly-inline-widget" data-url="https://calendly.com/loventia/reservation"></div>
-                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                    </div>
+                <div class="calendly-text-content">
+                    <h2 class="animate-fade-up">Réservez votre date</h2>
+                    <p class="subtitle animate-fade-up">
+                        Choisissez le créneau qui vous convient pour discuter de votre projet ou bloquer votre date.
+                    </p>
+                </div>
+                
+                <div class="calendly-widget-container">
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/loventia/reservation"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                 </div>
             </div>
         </section>
@@ -1228,9 +1554,9 @@
             
             window.addEventListener('scroll', setActiveNavigation);
             
-            // 6. Animations d'entrée simples
+            // 6. Système d'animations au scroll
             const observerOptions = {
-                threshold: 0.15,
+                threshold: 0.1,
                 rootMargin: '0px 0px -10% 0px'
             };
             
@@ -1243,22 +1569,12 @@
                 });
             }, observerOptions);
             
-            // Observer les sections
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
+            // Observer tous les éléments animés
+            document.querySelectorAll('.animate-fade-up, .animate-fade-left, .animate-fade-right, .animate-scale').forEach(el => {
+                observer.observe(el);
             });
             
-            // 7. Effet simple sur le logo
-            const logoLink = document.querySelector('.logo-link');
-            if (logoLink) {
-                logoLink.addEventListener('mouseenter', function() {
-                    this.querySelector('.logo').style.transform = 'scale(1.05)';
-                });
-                
-                logoLink.addEventListener('mouseleave', function() {
-                    this.querySelector('.logo').style.transform = 'scale(1)';
-                });
-            }
+            console.log('🎬 Loventia - Site chargé avec succès !');
         });
     </script>
 </body>
